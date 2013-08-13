@@ -1,3 +1,10 @@
+#!/usr/bin/env ruby
+
+if $0 == __FILE__
+  app = ARGV.first || "app"
+  exec "rails new #{app} --skip-bundle --skip-active-record -m #{__FILE__}"
+end
+
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'haml-rails'
 
@@ -24,6 +31,12 @@ CODE
 file "app/views/dashboard/index.haml", <<CODE
 %h1 Dashboard
 CODE
+
+run 'bundle install'
+
+generate 'mongoid:config'
+
+gsub_file 'config/mongoid.yml', /(^\s+#.+\n)+/, ''
 
 git :init
 git add: "."
