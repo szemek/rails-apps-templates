@@ -6,6 +6,7 @@ if $0 == __FILE__
 end
 
 gem 'mongoid', github: 'mongoid/mongoid'
+gem 'thin'
 gem 'haml-rails'
 
 gem_group :development, :test do
